@@ -53,12 +53,12 @@ struct ContentView: View {
             }
             
             .onChange(of: photoPickerSelectedImage, initial: true, { oldValue, newValue in
-              if let newValue {
-                  Task {
-                      if let data = try? await newValue.loadTransferable(type: Data.self) {
-                          captureImage = UIImage(data: data)
-                      }
-                  }
+                if let newValue {
+                    Task {
+                        if let data = try? await newValue.loadTransferable(type: Data.self) {
+                            captureImage = UIImage(data: data)
+                        }
+                    }
                 }
                 
             })
