@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		1B18B4632E052C34005B257A /* MyCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BB195F42E0E64C8000FDF6C /* MyCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -33,16 +33,8 @@
 			isa = PBXGroup;
 			children = (
 				1B18B4652E052C34005B257A /* MyCamera */,
-				1B18B4642E052C34005B257A /* Products */,
+				1BB195F42E0E64C8000FDF6C /* MyCamera.app */,
 			);
-			sourceTree = "<group>";
-		};
-		1B18B4642E052C34005B257A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				1B18B4632E052C34005B257A /* MyCamera.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -67,7 +59,7 @@
 			packageProductDependencies = (
 			);
 			productName = MyCamera;
-			productReference = 1B18B4632E052C34005B257A /* MyCamera.app */;
+			productReference = 1BB195F42E0E64C8000FDF6C /* MyCamera.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -95,7 +87,7 @@
 			mainGroup = 1B18B45A2E052C34005B257A;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 1B18B4642E052C34005B257A /* Products */;
+			productRefGroup = 1B18B45A2E052C34005B257A;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -253,7 +245,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PKN7C7R443;
+				DEVELOPMENT_ASSET_PATHS = "MyCamera/PreviewContent MyCamera/PreviewContent/Preview\\ Assets.xcassets";
+				DEVELOPMENT_TEAM = L9BR6FRV74;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "写真を撮影するためにカメラを利用します。";
@@ -283,7 +276,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PKN7C7R443;
+				DEVELOPMENT_ASSET_PATHS = "MyCamera/PreviewContent MyCamera/PreviewContent/Preview\\ Assets.xcassets";
+				DEVELOPMENT_TEAM = L9BR6FRV74;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "写真を撮影するためにカメラを利用します。";

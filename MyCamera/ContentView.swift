@@ -14,16 +14,10 @@ struct ContentView: View {
     @State var photoPickerSelectedImage: PhotosPickerItem? = nil
     var body: some View {
         VStack {
-            Spacer()
-            if let captureImage {
-                Image(uiImage: captureImage)
-                    .resizable()
-                    .scaledToFit()
-            }
-            Spacer()
             Button {
                 if UIImagePickerController.isSourceTypeAvailable(.camera) {
                     print("カメラは利用できます")
+                    captureImage = nil
                     isShowSheet.toggle()
                     
                 } else {
@@ -38,42 +32,40 @@ struct ContentView: View {
                     .foregroundColor(Color.white)
             }
             .padding()
+            
             .sheet(isPresented: $isShowSheet) {
-                ImagePickerView(isShowSheet: $isShowSheet, captureImage: $captureImage)
-            }
-            
-            PhotosPicker(selection: $photoPickerSelectedImage, matching: .images, preferredItemEncoding: .automatic, photoLibrary: .shared()) {
-                Text("フォトライブラリーから選択する")
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 50)
-                    .background(Color.blue)
-                    .foregroundColor(Color.white)
-                    .padding()
+                if let captureImage {
+                    EffectView(isShowSheet: $isShowSheet, captureImage: captureImage)
+                } else {
+                    ImagePickerView(isShowSheet: $isShowSheet, captureImage: $captureImage)
+                }
                 
-            }
-            
-            .onChange(of: photoPickerSelectedImage, initial: true, { oldValue, newValue in
-                if let newValue {
-                    Task {
-                        if let data = try? await newValue.loadTransferable(type: Data.self) {
-                            captureImage = UIImage(data: data)
+                PhotosPicker(selection: $photoPickerSelectedImage, matching: .images, preferredItemEncoding: .automatic, photoLibrary: .shared()) {
+                    Text("フォトライブラリーから選択する")
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 50)
+                        .background(Color.blue)
+                        .foregroundColor(Color.white)
+                        .padding()
+                    
+                }
+                
+                .onChange(of: photoPickerSelectedImage, initial: true, { oldValue, newValue in
+                    if let newValue {
+                        Task {
+                            if let data = try? await newValue.loadTransferable(type: Data.self) {
+                                captureImage = UIImage(data: data)
+                            }
                         }
+                    }
+                })
+                
+                .onChange(of: captureImage, initial: true) { oldValue, newValue in
+                    if let newValue {
+                        isShowSheet.toggle()
                     }
                 }
                 
-            })
-            
-            if let captureImage {
-                let shareImage = Image(uiImage: captureImage)
-                ShareLink(
-                    item: shareImage, subject: nil, message: nil, preview: SharePreview("Photo", image: shareImage)) {
-                        Text("SNSに投稿する")
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 50)
-                            .background(Color.blue)
-                            .foregroundStyle(Color.white)
-                            .padding()
-                    }
             }
         }
     }
